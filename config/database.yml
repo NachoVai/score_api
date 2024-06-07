@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: password
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: score_api_development
+
+test:
+  <<: *default
+  database: score_api_test
+
+production:
+  <<: *default
+  database: score_api_production
+  username: score_api
+  password: <%= ENV["SCORE_API_DATABASE_PASSWORD"] %>
